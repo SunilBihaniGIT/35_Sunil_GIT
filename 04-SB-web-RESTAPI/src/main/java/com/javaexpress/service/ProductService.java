@@ -79,7 +79,7 @@ public class ProductService {
 		if (productRepository.existsById(productId)) {
 			productRepository.deleteById(productId);
 		} else {
-			throw new RuntimeException("Product is not Exist in DB");
+			throw new ResourceNotFoundException("Product is not Exist in DB");
 		}
 	}	
 

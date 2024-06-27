@@ -5,10 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.javaexpress.entities.User;
 import com.javaexpress.repository.UserRepository;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Service

@@ -53,7 +53,7 @@ public class UserService {
 		if (userRepository.existsById(userId)) {
 			userRepository.deleteById(userId);
 		} else {
-			throw new RuntimeException("User is not Exist in DB");
+			throw new ResourceNotFoundException("User is not Exist in DB");
 		}
 	}
 	//Hard Delete

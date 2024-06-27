@@ -2,6 +2,7 @@ package com.javaexpress.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,11 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaexpress.entities.Category;
 import com.javaexpress.service.CategoryService;
-
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -24,12 +25,13 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	@PostMapping
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public void createCategory(@RequestBody Category category) {
 		log.info("CategoryController :: createCategory {}", category.getName());
 		categoryService.createCategory(category);
 	}
 	
-	// http://localhost:8080/api/v1/category/5
+	// http://localhost:8080/api/v1/category/11
 	@GetMapping("{categoryId}")
 	public Category getCategoryById(@PathVariable Long categoryId) {
 		log.info("CategoryController :: getCategoryById {}", categoryId);
@@ -43,6 +45,7 @@ public class CategoryController {
 	}
 	
 	@DeleteMapping("{categoryId}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteCategory(@PathVariable long categoryId) {
 		log.info("CategoryController :: deleteCategory {}", categoryId);
 		categoryService.deleteCategory(categoryId);
