@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.javaexpress.entities.User;
 import com.javaexpress.repository.UserRepository;
+import com.javaexpress.service.exception.ResourceNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,7 +34,7 @@ public class UserService {
 
 	public User findUserById(Long userId) {
 		log.info("UserService :: findUserById ");
-		return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User Not Found"));
+		return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
 	}
 
 	public void updateUser(Long userId , User inputUser) {

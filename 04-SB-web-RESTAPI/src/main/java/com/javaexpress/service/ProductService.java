@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.javaexpress.entities.Product;
 import com.javaexpress.repository.ProductRepository;
+import com.javaexpress.service.exception.ResourceNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +30,7 @@ public class ProductService {
 
 	public Product fetchProduct(@PathVariable long productId) {
 		log.info("ProductService  fetchProduct {}");
-		return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product is not available"));
+		return productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product is not available"));
 	}
 
 	public List<Product> fetchProducts(@PathVariable String categoryName) {
