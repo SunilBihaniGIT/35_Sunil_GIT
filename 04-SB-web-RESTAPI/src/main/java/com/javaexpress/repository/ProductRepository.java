@@ -11,9 +11,10 @@ import com.javaexpress.entities.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>{
 	
-	//Input is categoryName and output
+	// DSL - Domain specific Language
+	// Input is categoryName and output
 	// native query (SQL) we can directly execute in database
-	// Jpql Queries - It will support all databases means sql db
+	// Jpql- java persistence  Queries - It will support all databases means sql db
 	
 	// JPQL - It will follow the table name as class name and column name as variable name
 	@Query("select p from Product p INNER JOIN p.category c where c.name=:categoryName")
@@ -22,9 +23,11 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	List<Product> findByCategoryName(String categoryName);
 	
 
+	//JPQL Query (p)
 	@Query("select p from Product p where p.barCode=:barCode")
 	Product fetchProductUsingJPQL(String barCode);
 	
+	//Native Query (*)
 	@Query(value = "select * from Product p where p.bar_code=:barCode" , nativeQuery = true)
 	Product fetchProductUsingNative(String barCode);
 	
